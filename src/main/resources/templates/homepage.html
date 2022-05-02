@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Inventory Management</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Wellcome</h1>
+    <hr>
+
+    <br><br>
+
+
+    User : <span th:text="${#request.userPrincipal.principal.username}"></span>
+
+<hr>
+    <div class="d-flex">
+
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/vendors}"
+           class="btn btn-outline-success btn-sm mr-2 mt-2 mb-2">
+            Vendors
+        </a>
+    </div>
+    <div class="d-flex">
+
+        <a sec:authorize="hasRole('ROLE_VENDOR')" th:href="@{/showHome(username=${#request.userPrincipal.principal.username})}"
+           class="btn btn-outline-success btn-sm mr-2 mt-2 mb-2">
+            Go Home Page
+        </a>
+    </div>
+    <form action="#" th:action="@{/logout}"
+          method="POST">
+
+        <input type="submit" value="Logout"/>
+    </form>
+
+
+    <!--
+    <div class="d-flex" sec:authorize="hasRole('ROLE_VENDOR')" >
+
+
+
+
+            <form action="#" th:object="${vendor}" th:action="@{/listByVendorId)}"
+                 method="POST">
+
+
+
+
+
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">vendorId :</label>
+                    <div class="col-sm-4">
+                        <input type="text" th:field="*{vendorId}" placeholder="vendor Id" class="form-control mb-4 col-4">
+                    </div>
+                </div>
+
+
+
+
+                <button type="submit" class="btn btn-info col-1">Get items</button>
+
+            </form>
+
+        </a>
+    </div>-->
+
+
+
+
+</div>
+</body>
+</html>
+
+
+
